@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="tab_text_1">пн</string>
+    <string name="tab_text_2">вт</string>
+    <string name="tab_text_3">ср</string>
+    <string name="tab_text_4">чт</string>
+    <string name="tab_text_5">пт</string>
+    <string name="tab_text_6">сб</string>
+</resources>
