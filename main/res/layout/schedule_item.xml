@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#aaaaff"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00 - 11:00"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:id="@+id/timeText"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_marginStart="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:id="@+id/summaryText"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="location"
+        android:layout_marginStart="30dp"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        android:id="@+id/locationText"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="summary"
+        android:layout_marginStart="30dp"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        android:id="@+id/descriptionText"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Четная"
+        android:textStyle="bold"
+        android:layout_marginStart="30dp"
+        android:background="#aaaaaa"
+        android:padding="5dp"
+        android:textColor="#222222"
+        android:textSize="20sp"
+        android:id="@+id/parityText"
+        />
+</LinearLayout>
