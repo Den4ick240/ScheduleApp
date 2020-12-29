@@ -1,16 +1,19 @@
 package com.nsu.ccfit.nsuschedule.ui.main;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -20,6 +23,10 @@ import com.nsu.ccfit.nsuschedule.DataViewModel;
 import com.nsu.ccfit.nsuschedule.R;
 import com.nsu.ccfit.nsuschedule.scheduleabstract.Parity;
 import com.nsu.ccfit.nsuschedule.scheduleabstract.ScheduleItem;
+
+import net.fortuna.ical4j.data.ParserException;
+
+import java.io.IOException;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -71,6 +78,21 @@ public class PlaceholderFragment extends Fragment {
             }
         });
         listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    dataViewModel.showWindow(index, position);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParserException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        });
+
         return root;
     }
 
@@ -106,16 +128,16 @@ public class PlaceholderFragment extends Fragment {
 
             ScheduleItem scheduleItem = schedule[position];
 
-            description.setText(scheduleItem.getDescription());
+            if (scheduleItem.getDescription().trim().equals("-")) {
+                description.setVisibility(View.GONE);
+            } else {
+                description.setText(scheduleItem.getDescription());
+            }
             location.setText(scheduleItem.getLocation());
             summary.setText(scheduleItem.getSummary());
-            if (scheduleItem.getSummary().trim().equals("-")) {
-                summary.setVisibility(View.GONE);
-            } else
             time.setText(scheduleItem.getStartTime() + " - " + scheduleItem.getEndTime());
             switch (scheduleItem.getParity()) {
                 case ALL:
-//                    parity.setText("");
                     parity.setVisibility(View.GONE);
                     break;
                 case ODD:

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DataViewModel extends AndroidViewModel {
@@ -51,6 +52,14 @@ public class DataViewModel extends AndroidViewModel {
         }
         updateSchedules();
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void showWindow(int tabPos, int intervalPos) throws IOException, ParserException {
+        TimeIntervalData timeIntervalData = (TimeIntervalData) Objects.requireNonNull(
+                schedules.get(tabPos - 1).getValue())[intervalPos];
+        System.out.println(timeIntervalData.toString());
+        loadData();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
